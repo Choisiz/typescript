@@ -16,7 +16,7 @@ notSure=true
 let anything:any=0;
 anything="string";
 anything=false;
-//void(아무것도 return x) 
+//void(아무것도 return x), 보통 void는 생략 
 function print(): void {
     let vo =5;
     return;

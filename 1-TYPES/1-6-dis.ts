@@ -11,7 +11,7 @@
         reason: string
     }
     type loginState = successState | failState;
-    function login(id:string, pw: string):loginState{
+    function login2(id:string, pw: string):loginState{
         return {
             result:"success",
             res:{
@@ -20,7 +20,7 @@
         }
     }
     //추천
-    function printLoginState(state:loginState){
+    function printLoginState2(state:loginState){
         if(state.result ==="success"){
             console.log(`🎉 ${state.res.body}`)
         }else{

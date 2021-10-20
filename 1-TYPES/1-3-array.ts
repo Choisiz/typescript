@@ -9,7 +9,7 @@ function printArray(fruits: readonly string[]){
     //Shadowed Variable
     //전달된 인자를 함수내에서 로컬변수로 덮어쓰우는것x
     //fruits=['w','g'];
-    fruits[0]="w" //readonly로 안됨
+    //fruits[0]="w" //readonly로 안됨
     console.log(fruits);
 }
 
@@ -23,10 +23,17 @@ printArray(fruits);
 //interface, type alias, class 로 사용 추천
 //useState에서 쓰는것과 비슷함
 //여기 들어가보면 리턴타입이 튜플임
-
 let student :[string,number];
 student =['name',123];
 student[0] //name
 student[1] //123
 const [name,age]=student;
+
+//Type Alias로 변환
+type Student ={
+    name: string,
+    age: number
+}
+let alias : Student;
+alias={name:"홍길동",age:20}
 }

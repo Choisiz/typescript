@@ -26,7 +26,7 @@ function print2(message:string){
 print2("hello")
 
 //👍
-function print3(message ='dafuult'){
+function print3(message ='default'){
     console.log(message);
 }
 print3("hello")
