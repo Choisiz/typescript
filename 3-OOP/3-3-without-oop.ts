@@ -56,6 +56,7 @@
     const result2=CoffeeMake.makeMachine(50);
     console.log("B사 커피머신 초기화: ",result2)
     const result3 = new CoffeeMake(100);
+    result3.
     const result4= result3.fillCoffeeBean(100);
     console.log(result4);
 
