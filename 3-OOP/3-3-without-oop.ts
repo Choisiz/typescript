@@ -59,5 +59,27 @@
     const result4= result3.fillCoffeeBean(100);
     console.log(result4);
 
-    
+    class Uswe {
+        get fullName():string{
+            return `${this.firstName} ${this.lastName}`;
+        }
+        private internalAge=4;
+        get age():number { //두다
+            return this.internalAge;
+        }
+
+        set age(num:number) { //놓다
+            this.internalAge =num;
+        }
+        constructor(public firstName:string, private lastName:string){
+            this.firstName=firstName;
+            this.lastName=lastName;
+        }
+    }
+    const user = new Uswe('c','ky');
+    user.age=20;
+    console.log(user.age);
+    console.log(user.fullName);
+    user.firstName="gg";
+    console.log(user.fullName);
 }
