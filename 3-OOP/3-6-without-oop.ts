@@ -66,7 +66,6 @@ interface starbucks {
         };
         makeCoffee(){
             const fill =this.machine.makeCoffee(2,0);
-            console.log("일반: ",fill);
         }
     };
     const result:CoffeeMakeImpl = CoffeeMakeImpl.makeMachine(50);
