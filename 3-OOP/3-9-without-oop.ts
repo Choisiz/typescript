@@ -8,15 +8,24 @@
   interface CoffeeMake {
     makeCoffee(shots: number, coffeeBeans: number): coffeeData;
   }
+
+  interface MilkProvider {
+    makeMilk(cup: coffeeData): coffeeData;
+  }
+  interface SugarProvider {
+    makeSuger(cup: coffeeData): coffeeData;
+  }
   //커피만들기
   class CoffeeMakeImpl implements CoffeeMake {
     private static BEAN_GRAM_COFFEE: number = 5;
     private coffeeBeans: number = 0;
-    constructor(coffeeBeans: number) {
+
+    constructor(
+      coffeeBeans: number,
+      private milk: MilkProvider,
+      private sugar: SugarProvider
+    ) {
       this.coffeeBeans = coffeeBeans;
-    }
-    static makeMachine(coffeeBeans: number): CoffeeMakeImpl {
-      return new CoffeeMakeImpl(coffeeBeans);
     }
 
     fillCoffeeBean(beans: number) {
@@ -50,11 +59,13 @@
     makeCoffee(shots: number, coffeeBeans: number): coffeeData {
       this.grindBeans(shots);
       this.preheat();
-      return this.extract(shots, coffeeBeans);
+      const coffee = this.extract(shots, coffeeBeans);
+      const sugarAdd = this.sugar.makeSuger(coffee);
+      return this.milk.makeMilk(sugarAdd);
     }
   }
   //우유 제조기(싸구려)
-  class CheapMilkStreamer {
+  class CheapMilkStreamer implements MilkProvider {
     private steamMil(): void {
       console.log("밀크 가열중...🥛🥛");
     }
@@ -66,8 +77,40 @@
       };
     }
   }
+  //우유 제조기(고급)
+  class FancyMilkStreamer implements MilkProvider {
+    private steamMil(): void {
+      console.log("고급밀크 가열중...🥛🥛");
+    }
+    makeMilk(cup: coffeeData): coffeeData {
+      this.steamMil();
+      return {
+        ...cup,
+        milk: true,
+      };
+    }
+  }
+  //우유 제조기(아이스)
+  class ColdMilkStreamer implements MilkProvider {
+    private steamMil(): void {
+      console.log("차가운밀크 가열중...🥛🥛");
+    }
+    makeMilk(cup: coffeeData): coffeeData {
+      this.steamMil();
+      return {
+        ...cup,
+        milk: true,
+      };
+    }
+  }
+  //우유x
+  class NoMike implements MilkProvider {
+    makeMilk(cup: coffeeData): coffeeData {
+      return cup;
+    }
+  }
   //설탕 제조기(싸구려)
-  class AuthmaticSugerMixer {
+  class CandySugerMixer implements SugarProvider {
     private getSuger() {
       console.log("설탕 넣기🍬🍬");
       return true;
@@ -80,62 +123,40 @@
       };
     }
   }
-  //라떼만들기(커피만들기 + 우유제조기)
-  class CaffeLatteImpl extends CoffeeMakeImpl {
-    constructor(
-      coffeeBeans: number,
-      public readonly serial: string,
-      private milk: CheapMilkStreamer
-    ) {
-      super(coffeeBeans);
+  //설탕 제조기(고급)
+  class FancySugerMixer implements SugarProvider {
+    private getSuger() {
+      console.log("고급설탕 넣기🍬🍬");
+      return true;
     }
-    // class 설탕제조기를 생성했으므로 필요x
-    // private steamMil():void {
-    //     console.log('밀크 가열중...')
-    // }
-    makeCoffee(shots: number, coffeeBeans: number): coffeeData {
-      const coffee = super.makeCoffee(shots, coffeeBeans);
-      console.log("코콬코코코코", coffee);
-      return this.milk.makeMilk(coffee);
-      //   this.steamMil();
-      //   return {
-      //     ...coffee,
-      //     milk: true,
-      //   };
+    makeSuger(cup: coffeeData): coffeeData {
+      const suger = this.getSuger();
+      return {
+        ...cup,
+        suger: suger,
+      };
     }
   }
-  //달달한커피만들기(커피만들기 + 설탕제조기)
-  class SweetCoffeImpl extends CoffeeMakeImpl {
-    //class 설탕제조기를 생성했으므로 필요x
-    // getSuger(){
-    //     console.log("설탕 넣기");
-    // }
-    constructor(coffeeBeans: number, private sugar: AuthmaticSugerMixer) {
-      super(coffeeBeans);
-    }
-    makeCoffee(shots: number, coffeeBeans: number): coffeeData {
-      const coffee = super.makeCoffee(shots, coffeeBeans);
-      return this.sugar.makeSuger(coffee);
-      //   return {
-      //     ...coffee,
-      //     milk: true,
-      //     suger: true,
-      //   };
+  //설탕x
+  class NoSugar implements SugarProvider {
+    makeSuger(cup: coffeeData): coffeeData {
+      return cup;
     }
   }
-  //달달한라떼만들기(커피만들기 + 유유제조기 + 설탕제조기)
-  class SweetCaffeeLatteImpl extends CoffeeMakeImpl {
-    constructor(
-      coffeeBeans: number,
-      private milk: CheapMilkStreamer,
-      private sugar: AuthmaticSugerMixer
-    ) {
-      super(coffeeBeans);
-    }
-    makeCoffee(shot: number, coffeeBeans: number): coffeeData {
-      const coffee = super.makeCoffee(shot, coffeeBeans);
-      const sugarAdd = this.sugar.makeSuger(coffee);
-      return this.milk.makeMilk(sugarAdd);
-    }
-  }
+  //-----------------------------------------------
+
+  //milk
+  const cheapMilkMaker = new CheapMilkStreamer();
+  const fnacyMilkMake = new FancyMilkStreamer();
+  const coldMilkStreamer = new ColdMilkStreamer();
+  const noMike = new NoMike();
+  ///sugar
+  const candySugar = new CandySugerMixer();
+  const fancySugar = new FancySugerMixer();
+  const noSugar = new NoSugar();
+
+  //달달한 커피만들기(커피만들기 + 설탕 제조기)
+  const sweetMachine = new CoffeeMakeImpl(1, noMike, candySugar);
+  //달달한 라떼만들기(커피만들기 + 우유제조기 + 설탕제조기)
+  const sweet2Machine = new CoffeeMakeImpl(1, fnacyMilkMake, fancySugar);
 }
