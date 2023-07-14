@@ -1,36 +1,41 @@
-//number
-const num:number = 5;
-//string
-const str:string ="hello";
-//boolean
-const bol:boolean = true;
-//undefined
-let age: number | undefined;
-//null;
-let add: string | null;
-//unknown(어떤것을 사용할지 모를때)💩
-let notSure:unknown=0;
-notSure="string"
-notSure=true
-//any(어떠한 것이든)💩
-let anything:any=0;
-anything="string";
-anything=false;
-//void(아무것도 return x), 보통 void는 생략 
-function print(): void {
-    let vo =5;
+{
+  //type
+  const uniform_number: number = 10;
+  const player_name: string = "messi";
+  const Ambipedal_players: boolean = false;
+  let age: number | undefined;
+  let family: string | null;
+  let score: unknown = 0; //💩
+  score = 2;
+  score = "2:1";
+  let etc: any = "bestPlayer"; //💩
+  etc = 10;
+  etc = false;
+  const postion1 = (): void => {
+    let mid = "mid";
+    return; //리턴값이 없을때
+  };
+  function postion2(): void {
+    let striker = "striker";
     return;
-}
-//never(절대 리턴x)
-function throwError(message: string):never {
+  }
+  const throwError1 = (message: string): never => {
     throw new Error(message);
-    while(true){}
+    while (true) {} //리턴을 사용하지 못함
+  };
+  function throwError2(message: string): never {
+    throw new Error(message);
+    while (true) {}
+  }
+  //object(원시타입제외 오든 오브젝트 할당가능)💩
+  let obj: object;
+  obj = [];
+  obj = {};
+  const accept1 = (obj: object) => {
+    return obj;
+  };
+  function accept2(obj: Object) {
+    return obj;
+  }
+  accept1({ name: "messi", age: "30" });
 }
-//object(원시타입제외 오든 오브젝트 할당가능)💩
-let obj: object; 
-function accept(obj:Object){
-    console.log(obj)
-    return obj
-}
-
-accept({name:"hello"})

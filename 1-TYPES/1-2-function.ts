@@ -1,47 +1,53 @@
 {
-    //js
-    function jsAdd (num,num2){
-        return num+num2;
-    }
-    //ts
-    function tsAdd(num:number,num2:number):number{
-        return num+num2
-    }
-    //js
-    function jsFetchNum(id){
-        //code..
-        //coee..
-        return new Promise((resolve, reject)=> {
-            resolve(100);
-        });
-    }
-    //ts
-    function tsFetchNum(id:string):Promise<number>{
-        //code..
-        //coee..
-        return new Promise((resolve, reject)=> {
-            resolve(100);
-        });
-    }
+  //js
+  function jsAdd1(num, num2) {
+    return num + num2;
+  }
+  //ts
+  function jsAdd2(num1: number, num2: number) {
+    return num1 + num2;
+  }
+  //js
+  function jsFetch1(id) {
+    //code..
+    return new Promise((resolve, reject) => {
+      resolve(100);
+    });
+  }
+  //ts
+  function jsFetch2(id: string): Promise<number> {
+    //code..
+    return new Promise((resolve, reject) => {
+      resolve(100);
+    });
+  }
+  //optinal parameter
+  function printName(firstName: string, lastName: string) {
+    console.log(firstName);
+    console.log(lastName);
+  }
+  printName("c", "ky");
+  printName("c");
 
-    //optinal parameter
-    //인자가 없어도 가능, 해당타입이거나 undefined거나
-    function printName(name:string, age?:number){
-        console.log(name);
-        console.log(age);
-    }
-    printName("WW",undefined);
+  function printName2(firstName: string, lastName?: string) {
+    console.log(firstName);
+    console.log(lastName);
+  }
+  printName("c", "ky");
+  printName("c");
 
-    //default
-    function printName2(name:string ='홍길동'){
-        console.log(name)
-    }
-    printName2()
-    //rest parameter
-    function addNumber(...args:number[]):number{
-        return args.reduce((a,b)=>a+b)
-    }
+  //default parameter
+  function printMessage(message: string = "default") {
+    console.log(message);
+  }
+  printMessage();
 
-    console.log(addNumber(1,2))
-    console.log(addNumber(1,2,3,4));
+  //rest parameter
+  function addNumber(...numbers: number[]): number {
+    return numbers.reduce((a, b) => a + b);
+  }
+  console.log(addNumber(1, 2));
+  console.log(addNumber(1, 2, 3, 4, 5));
 }
+
+//1-2-function

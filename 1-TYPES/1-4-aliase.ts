@@ -1,21 +1,17 @@
-//Type Aliases
 {
-type Text = string;
-const name: Text ="텍스트"
-
-type Student = {
-    name: string,
-    age: number
-};
-
-const student: Student = {
-    name:"홍길동",
-    age: 18
-}
-
-type Name="name"
-let cky:Name;
-cky ="name"
-let hi:Name ="name";
-console.log(hi)
+  //type aliases
+  type Text = string;
+  const name: Text = "messi";
+  type Player = {
+    name: string;
+    age: number;
+  };
+  const player: Player = {
+    name: "messi",
+    age: 30,
+  };
+  //String Literal Types
+  type Name = "messi";
+  let playerName: Name;
+  playerName = "messi";
 }
