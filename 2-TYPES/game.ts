@@ -1,39 +1,36 @@
-/**
- * Let's make a game 🕹
- */
-
-type location ='up'|'down'|'left'|'right';
-
-type result ={
-    x:number;
-    y:number;
-}
-
-const position:result ={
-    x:0,
-    y:0
+const position1: result1 = {
+  x: 0,
+  y: 0,
 };
 
-function move(commend: location):result{
-    if(commend =="up"){
-        position.y+=1;
-    }else if(commend =="down"){
-        position.y-=1;
-    }else if(commend=="left"){
-        position.x-=1;
-    }else if(commend=="right"){
-        position.x+=1;
-    }else{
-        throw Error("error")
-    }
-    return position;
+type result1 = { x: number; y: number };
+type dire = "up" | "down" | "left" | "right";
+
+function move1(dire: dire) {
+  switch (dire) {
+    case "up":
+      position1.y += 1;
+      break;
+    case "down":
+      position1.y -= 1;
+      break;
+    case "left":
+      position1.x -= 1;
+      break;
+    case "right":
+      position1.x += 1;
+      break;
+    default:
+      throw Error("error");
+  }
 }
-console.log(position); // { x: 0, y: 0}
-move('up');
-console.log(position); // { x: 0, y: 1}
-move('down');
-console.log(position); // { x: 0, y: 0}
-move('left');
-console.log(position); // { x: -1, y: 0}
-move('right');
-console.log(position); // { x: 0, y: 0}
+
+console.log(position1); // { x: 0, y: 0}
+move1("up");
+console.log(position1); // { x: 0, y: 1}
+move1("down");
+console.log(position1); // { x: 0, y: 0}
+move1("left");
+console.log(position1); // { x: -1, y: 0}
+move1("right");
+console.log(position1); // { x: 0, y: 0}
