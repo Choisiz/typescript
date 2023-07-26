@@ -1,30 +1,24 @@
-
 {
-//커피정보
-type coffeeData = {
-    shots: number
-    milk:boolean,
-    coffeeBean: number
-}
-//1커피당 소모되는 재료값
-const BEAN_GRAM_COFFEE:number = 7;
-//커피재료
-let coffeeBean:number =0;
+  type CoffeeCup = {
+    shots: number;
+    hasMilk: boolean;
+  };
 
-//커피만들기
-const makeCoffee =(shots:number,coffeeBean:number):coffeeData=> {
-    if(coffeeBean < shots*BEAN_GRAM_COFFEE){
-        throw new Error("커피재료가 부족합니다.")
+  const BEAN_GRAM_SHOT: number = 10;
+  let coffeeBeans: number = 0;
+
+  function makeCoffee(shots: number): CoffeeCup {
+    if (coffeeBeans < shots * BEAN_GRAM_SHOT) {
+      throw Error("커피원두 재료가 부족합니다");
     }
-    coffeeBean -= shots*BEAN_GRAM_COFFEE;
+    coffeeBeans -= shots * BEAN_GRAM_SHOT;
     return {
-        shots: shots,
-        milk: false,
-        coffeeBean: coffeeBean
-    }
-}
+      shots: shots,
+      hasMilk: false,
+    };
+  }
 
-coffeeBean += 3*BEAN_GRAM_COFFEE; //21
-const result = makeCoffee(1,coffeeBean);
-console.log(result);
+  coffeeBeans += 3 * BEAN_GRAM_SHOT; //원두충전
+  const coffee = makeCoffee(2); //(2)샷커피 생성
+  console.log(coffee);
 }
