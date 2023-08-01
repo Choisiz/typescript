@@ -10,7 +10,7 @@
   }
 
   class CoffeeMachine implements CoffeeMaker {
-    private static BEAN_GRAM: number = 10;
+    private static BEAN_GRAM: number = 2;
     private coffeeBeans: number = 0;
 
     constructor(
@@ -57,7 +57,7 @@
       this.preheat();
       const coffee = this.extract(shots);
       const sugarAdded = this.sugar.addSugar(coffee);
-      return this.extract(shots);
+      return this.milk.makeMilk(sugarAdded);
     }
   }
 
@@ -155,8 +155,10 @@
 
   //클래스간 상호작용 하는경우에는 클래스자체를 노출하긴보다는 계약서(인터페이스)로 상호작용하는것을 추천 => 디커플링원칙
 
-  //우유
+  //우유   shots: number;
+
   const milkIng = new CheapMilkSteamer();
+
   const fancyMilk = new FancyMilkSteamer();
   const coldMilk = new ColdMilkSteamer();
   const noMilk = new NoMilk();
@@ -171,5 +173,5 @@
   const latteMachine = new CoffeeMachine(12, milkIng, noSugar);
   const coldLatteMachine = new CoffeeMachine(12, coldMilk, noSugar);
   const sweetCaffeLatteMachine = new CoffeeMachine(12, milkIng, sugarIng);
-  console.log(sweetCaffeLatteMachine);
+  console.log(sweetCaffeLatteMachine.makeCoffee(2));
 }

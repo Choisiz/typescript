@@ -18,7 +18,7 @@
     };
   }
 
-  coffeeBeans += 3 * BEAN_GRAM_SHOT; //원두충전
-  const coffee = makeCoffee(2); //(2)샷커피 생성
+  coffeeBeans += 3 * BEAN_GRAM_SHOT;
+  const coffee = makeCoffee(2);
   console.log(coffee);
 }
