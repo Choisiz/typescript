@@ -16,12 +16,16 @@ class PartTimeEmployee implements Employee {
   workPartTime() {}
 }
 //세부적인 타입을 인자로 받아서 정말 추상적인 타입으로 다시 리턴하는 함수는 별로
-function pay(employee: Employee) {
+function payBad(employee: Employee) {
   employee.pay();
-  let a = "5";
-  console.log("wwww");
-  return a;
+  return employee;
 }
+
+function pay<T extends Employee>(employee: T): T {
+  employee.pay();
+  return employee;
+}
+
 const messi = new FullTimeEmployee();
 const ronaldo = new PartTimeEmployee();
 //----
@@ -33,3 +37,19 @@ const ronaldo = new PartTimeEmployee();
 const messiAfterPay = pay(messi); //?결과: full time입니다
 
 //const ronaldoAfterPay = pay(ronaldo);
+
+const obj = {
+  name: "cky",
+  age: 20,
+};
+
+interface Info {}
+
+function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
+  const result = obj[key];
+  return result;
+}
+
+console.log(obj["name"]);
+
+console.log(getValue(obj, "name"));
