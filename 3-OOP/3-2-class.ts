@@ -37,6 +37,7 @@
   }
 
   const make = new CoffeeMaker(30);
+
   /*
   ? make:이렇게 인스턴스를 생성한다면???
   ? 클래스안에 있는 멤버변수들(BEAN_GRAM_SHOT,coffeeBeans)이 다 공유가 된다. = 메모리가낭비
