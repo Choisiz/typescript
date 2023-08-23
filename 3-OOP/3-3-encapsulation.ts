@@ -11,7 +11,7 @@
     private constructor(coffeeBeans: number) {
       this.coffeeBeans = coffeeBeans;
     }
-
+    static hello = 4;
     //TODO: static를 붙여서 오브젝트를 만들수 있는 함수를 제공한다면(static makeMachine)
     //TODO: 생성자를 이용해서 생성하는것을 금지하기 때문에 생성자에 private를 설정하자.
     //TODO: ex) const make = new CoffeeMaker(30): x
