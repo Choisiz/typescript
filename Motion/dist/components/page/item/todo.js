@@ -7,7 +7,6 @@ export class TodoComponent extends BaseComponent {
            </section>`);
         const titleElement = this.element.querySelector(".todo__title");
         titleElement.textContent = title;
-        console.log(title);
         const todoElement = this.element.querySelector(".todo-checkbox");
         todoElement.textContent = todo;
     }

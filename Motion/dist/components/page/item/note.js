@@ -6,7 +6,7 @@ export class NoteComponent extends BaseComponent {
             <p class="note__body"></p>
            </section>`);
         const titleElement = this.element.querySelector(".note__title");
-        console.log("ㅇㅇㅇ");
+        console.timeLog("ww");
         titleElement.textContent = title;
         const bodyElement = this.element.querySelector(".note__body");
         bodyElement.textContent = body;

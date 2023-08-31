@@ -11,7 +11,6 @@ export class TodoComponent extends BaseComponent<HTMLElement> {
       ".todo__title"
     )! as HTMLHeadElement;
     titleElement.textContent = title;
-    console.log(title);
 
     const todoElement = this.element.querySelector(
       ".todo-checkbox"
