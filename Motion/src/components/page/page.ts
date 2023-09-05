@@ -78,9 +78,6 @@ export class PageItemComponent
   }
   setOnDragStateListener(listener: OnDragStateListener<PageItemComponent>) {
     //상시호출(한번만 호출)
-    //(target, state) => {
-    //        console.log("ss", target, state);
-    //      }
     console.log("listener", listener);
     this.dragStateListener = listener;
   }
